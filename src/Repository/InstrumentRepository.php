@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Instrument;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,19 @@ class InstrumentRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function queryFindAll(): Query
+    {
+        return $this->createQueryBuilder('i')->getQuery();
+    }
+
+    public function findLikeName(string $search): Query
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.name LIKE :search')
+            ->setParameter('search', '%' . $search . '%')
+            ->getQuery();
     }
 
 //    /**

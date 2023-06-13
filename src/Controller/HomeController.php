@@ -12,7 +12,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(InstrumentRepository $instrumentRepository): Response
     {
-        $instruments = $instrumentRepository->findAll();
+        $instruments = $instrumentRepository->findBy(criteria: [], limit: 5);
         return $this->render('home/index.html.twig', [
             'instruments' => $instruments
         ]);

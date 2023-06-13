@@ -10,6 +10,8 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class InstrumentFixtures extends Fixture
 {
     public const INSTRUMENTS = [
+        ['name' => 'Grumphy the rocker',
+            'picture' => 'grumphy-6295203a6fef7.jpg'],
         ['name' => 'Stratocaster 1958',
             'picture' => 'stratocaster-gilmour-black.jpg'],
         ['name' => 'Les Paul 1975',
@@ -34,6 +36,8 @@ class InstrumentFixtures extends Fixture
             'picture' => '05-GRUHN-D-45.jpeg',],
     ];
 
+    public const NUM_INSTRUMENTS = 300;
+
     public function __construct(private ParameterBagInterface $parameterBag)
     {
     }
@@ -54,6 +58,13 @@ class InstrumentFixtures extends Fixture
             $instrument
                 ->setName($instrumentData['name'])
                 ->setPicture($instrumentData['picture']);
+            $manager->persist($instrument);
+        }
+
+        for ($i = 0; $i < self::NUM_INSTRUMENTS; $i++) {
+            $instrument = new Instrument();
+            $instrument
+                ->setName('Instrument ' . $i);
             $manager->persist($instrument);
         }
 
