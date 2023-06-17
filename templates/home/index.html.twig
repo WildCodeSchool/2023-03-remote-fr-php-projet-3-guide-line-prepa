@@ -8,7 +8,7 @@
         <div class="swiper-wrapper">
             {% for instrument in instruments %}
                 <figure class="swiper-slide d-flex flex-column p-2">
-                    <img class="img-fluid " src="{{ upload_instrument_dir }}/{{ instrument.picture }}" alt="">
+                    <img class="img-fluid " src="{{ instrument_dir }}/{{ instrument.picture }}" alt="">
                     <figcaption>{{ instrument.name }}</figcaption>
                 </figure>
             {% endfor %}
