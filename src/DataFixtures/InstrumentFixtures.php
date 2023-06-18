@@ -13,30 +13,30 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class InstrumentFixtures extends Fixture implements DependentFixtureInterface
 {
     public const INSTRUMENTS = [
-        ['name' => 'Grumphy the rocker', 'company' => 'Fender',
-            'picture' => 'grumphy-6295203a6fef7.jpg', 'category' => 0],
-        ['name' => 'Stratocaster 1958', 'company' => 'Fender',
-            'picture' => 'stratocaster-gilmour-black.jpg', 'category' => 0],
-        ['name' => 'Les Paul 1975', 'company' => 'Gibson',
-            'picture' => 'gibson-les-paul.jpeg', 'category' => 0],
-        ['name' => 'Télécaster 1969', 'company' => 'Fender',
-            'picture' => 'telecaster.jpeg', 'category' => 0],
-        ['name' => 'Martin NY', 'company' => 'Martin',
-            'picture' => 'martin-ny.jpeg', 'category' => 1],
-        ['name' => 'Stratocaster série L', 'company' => 'Fender',
-            'picture' => 'stratocaster-gilmour-white.jpg', 'category' => 0],
-        ['name' => 'Jaguar', 'company' => 'Fender',
-            'picture' => 'fender-curt-kobain-jaguar.jpeg', 'category' => 0],
-        ['name' => 'SG', 'company' => 'Gibson',
-            'picture' => 'gibson-sg.jpeg', 'category' => 0],
-        ['name' => 'Martin D-35', 'company' => 'Martin',
-            'picture' => 'gilmour-martin-d-35.jpg', 'category' => 1],
-        ['name' => '335', 'company' => 'Gibson',
-            'picture' => 'gibson-335.jpeg', 'category' => 0],
-        ['name' => 'Gretsch White Penguin 6134', 'company' => 'Gretsch',
-            'picture' => 'fred-gretsch-white-penguin-6134-gilmour.jpg', 'category' => 0],
-        ['name' => 'Martin D-45', 'company' => 'Martin',
-            'picture' => '05-GRUHN-D-45.jpeg', 'category' => 1],
+        0 => ['name' => 'Stratocaster 1958', 'company' => 'Fender',
+            'picture' => 'stratocaster-gilmour-black.png', 'category' => 0],
+        1 => ['name' => 'Grumphy the rocker', 'company' => 'Fender',
+            'picture' => 'grumphy.jpg', 'category' => 0],
+        2 => ['name' => 'Les Paul 1975', 'company' => 'Gibson',
+            'picture' => 'gibson-les-paul.png', 'category' => 0],
+        3 => ['name' => 'Télécaster 1969', 'company' => 'Fender',
+            'picture' => 'telecaster.png', 'category' => 0],
+        4 => ['name' => 'Martin NY', 'company' => 'Martin',
+            'picture' => 'martin-ny.png', 'category' => 1],
+        5 => ['name' => 'Stratocaster série L', 'company' => 'Fender',
+            'picture' => 'stratocaster-gilmour-white.png', 'category' => 0],
+        6 => ['name' => 'Jaguar', 'company' => 'Fender',
+            'picture' => 'fender-curt-kobain-jaguar.png', 'category' => 0],
+        7 => ['name' => 'SG', 'company' => 'Gibson',
+            'picture' => 'gibson-sg.png', 'category' => 0],
+        8 => ['name' => 'Martin D-35', 'company' => 'Martin',
+            'picture' => 'gilmour-martin-d-35.png', 'category' => 1],
+        9 => ['name' => '335', 'company' => 'Gibson',
+            'picture' => 'gibson-335.png', 'category' => 0],
+        10 => ['name' => 'Gretsch White Penguin 6134', 'company' => 'Gretsch',
+            'picture' => 'fred-gretsch-white-penguin-6134-gilmour.png', 'category' => 0],
+        11 => ['name' => 'Martin D-45', 'company' => 'Martin',
+            'picture' => '05-GRUHN-D-45.png', 'category' => 1],
     ];
 
     public const NUM_INSTRUMENTS = 300;
@@ -67,7 +67,7 @@ class InstrumentFixtures extends Fixture implements DependentFixtureInterface
                 ->setSummary($faker->text($faker->numberBetween(50, 80)))
                 ->setDescription(implode("", array_map(function ($item) {
                     return "<p>" . $item . "</p>";
-                }, $faker->paragraphs($faker->numberBetween(3, 7)))))
+                }, $faker->paragraphs($faker->numberBetween(6, 12)))))
                 ->setReleaseAt($faker->dateTimeBetween('-70 years', '-40 years'))
                 ->setCompany($this->getReference('company_' . $instrumentData['company']))
                 ->setCategory($this->getReference('category_' . $instrumentData['category']))

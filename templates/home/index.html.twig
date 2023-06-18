@@ -3,17 +3,61 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <h1 class="text-center my-3">Home page</h1>
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            {% for instrument in instruments %}
-                <figure class="swiper-slide d-flex flex-column p-2">
-                    <img class="img-fluid " src="{{ instrument_dir }}/{{ instrument.picture }}" alt="">
-                    <figcaption>{{ instrument.name }}</figcaption>
-                </figure>
-            {% endfor %}
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="swiper mb-5 mb-lg-0">
+                    <div class="swiper-wrapper">
+                        {% for instrument in instruments %}
+                            <figure class="swiper-slide p-2">
+                                <img src="{{ instrument_dir }}/{{ instrument.picture }}" alt="">
+                                <figcaption class="d-flex flex-column p-2 w-50">
+                                    <h3 class="fs-5">{{ instrument.name }}</h3>
+                                    <p>{{ instrument.summary }}</p>
+                                    <a class="btn btn-sm btn-primary mt-auto" href="{{ path('app_instrument_show', {slug: instrument.slug}) }}">Entendre</a>
+                                </figcaption>
+                            </figure>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                <h1>Welcome on Guitar Shop!</h1>
+                <p>
+                    Guitar shop est un catalogue d’instruments qui va vous étonner !
+                    <br>
+                    Vous êtes passioné·e de musique et d’instruments ?
+                    Découvrez et écoutez des titres qui ont été enregistrés avec les instruments du catalogue.
+                </p>
+                <a class="btn btn-primary" href="#">Parcourir le catalogue</a>
+            </div>
         </div>
     </div>
+
+    <section class="mt-5">
+        <div class="container">
+            <div class="row g-5">
+                {% for sound in sounds %}
+                    <div class="col-lg-3 col-6">
+                        <div class="card h-100">
+                            <img src="{{ sound_dir }}/{{ sound.picture }}" class="card-img-top shadow"
+                                 alt="Couverture de l'album de {{ sound.artist.name }} - titre {{ sound.title }}">
+                            <div class="card-body">
+                                <h2 class="card-title fs-5 mb-0">{{ sound.artist.name }}</h2>
+                                <p>{{ sound.title }}</p>
+                                <a class="stretched-link"
+                                   aria-label="Lien vers la fiche de l'instrument"
+                                   href="{{ path('app_instrument_show', {
+                                       slug: sound.instrument.slug,
+                                       listen: sound.title
+                                   }) }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
 

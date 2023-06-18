@@ -1,3 +1,9 @@
 body {
-    padding-top: 4rem;
+    --body-padding-top: 4rem;
+    padding-top: var(--body-padding-top);
+}
+
+.position-sticky-top {
+    position: sticky;
+    top: calc(var(--body-padding-top) + 2rem);
 }

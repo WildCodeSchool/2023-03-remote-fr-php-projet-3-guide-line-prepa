@@ -15,8 +15,9 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script src="https://kit.fontawesome.com/935a547f0f.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body class="min-vh-100 d-flex flex-column">
         {% include 'include/_navbar.html.twig' %}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -25,6 +26,10 @@
                 </div>
             {% endfor %}
         {% endfor %}
-        {% block body %}{% endblock %}
+        <main class="mb-5">
+            {% block body %}{% endblock %}
+        </main>
+
+        {% include 'include/_footer.html.twig' %}
     </body>
 </html>

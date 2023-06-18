@@ -4,6 +4,8 @@ twig:
         - 'bootstrap_5_layout.html.twig'
     globals:
         instrument_dir: '%instrument_dir%'
+        sound_dir: '%sound_dir%'
+        company_dir: '%company_dir%'
 
 when@test:
     twig:

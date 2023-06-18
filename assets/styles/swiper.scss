@@ -4,20 +4,20 @@
 @import "bootstrap/scss/variables-dark";
 
 .swiper {
-    width: 240px;
-    height: 320px;
+    width: 280px;
+    height: 280px;
     .swiper-slide {
         display: flex;
-        align-items: center;
+        //align-items: center;
         justify-content: center;
         border-radius: 18px;
-        text-align: center;
-        font-size: 1.25rem;
-        font-weight: bold;
+        font-size: .875rem;
         background-color: white;
         box-shadow: $box-shadow;
         > img {
-            max-height: 80%;
+            max-width: 50%;
+            height: auto;
+            margin: 0 auto;
         }
     }
 }

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-3">
+                <div class="position-sticky-top">
+                    <img src="{{ instrument_dir }}/{{ instrument.picture }}"
+                         class="img-fluid" alt="">
+                </div>
+            </div>
+            <div class="col-9 col-lg-6">
+                <h1>{{ instrument.name }}</h1>
+                {{ instrument.description|raw }}
+            </div>
+            <div class="col-lg-3">
+                <div class="list-group position-sticky-top" role="list">
+                    {% for sound in instrument.sounds %}
+                        <button class="list-group-item list-group-item-action d-flex align-items-center
+                            {{ app.request.get('listen') == sound.title ? 'active' }}">
+                            <img class="w-25 me-2" src="{{ sound_dir }}/{{ sound.picture }}" alt="{{ sound.title }}">
+                            <span>
+                                {% if app.request.get('listen') == sound.title %}
+                                    <i class="fa-regular fa-circle-play"></i>
+                                {% endif %}
+                                {{ sound.title }}
+                            </span>
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="bg-light py-5">
+        <div class="container">
+            <img class="img-fluid d-block mx-auto" src="{{ company_dir }}/{{ instrument.company.logo }}"
+                 alt="{{ instrument.company.name }}" style="max-width: 200px">
+            <h2>Dans la même marque</h2>
+            <div class="row g-4">
+                {% for instrumentCompany in instrument.company.instruments|filter(instrumentcompany => instrumentcompany != instrument)|slice(0, 6) %}
+                    <div class="col-6 col-lg-3 col-xxl-2">
+                        <figure class="d-flex align-items-end shadow p-2 position-relative h-100">
+                            <img class="img-fluid w-25" src="{{ instrument_dir }}/{{ instrumentCompany.picture }}"
+                                 alt="">
+                            <figcaption class="d-flex flex-column ms-2 h-100 flex-grow-1">
+                                <h3 class="fs-5">{{ instrumentCompany.name }}</h3>
+                                <a class="btn btn-sm btn-outline-primary mt-auto stretched-link"
+                                   href="{{ path('app_instrument_show', {slug: instrumentCompany.slug}) }}">Entendre</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
