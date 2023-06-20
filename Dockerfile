@@ -33,9 +33,11 @@ RUN apk update \
 RUN apk add --no-cache \
       libzip-dev \
       zip \
+      freetype \
       libpng-dev \
-      jpeg-dev \
+      libjpeg-turbo \
       libjpeg-turbo-dev \
+    && docker-php-ext-configure gd \
     && docker-php-ext-install zip gd
 
 # silently install 'docker-php-ext-install' extensions
