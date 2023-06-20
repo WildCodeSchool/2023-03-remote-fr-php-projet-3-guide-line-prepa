@@ -30,15 +30,15 @@ RUN apk update \
     && apk upgrade \
     && apk add nginx
 
-RUN apk add --no-cache \
+RUN apk add --no-cache $PHPIZE_DEPS \
       libzip-dev \
       zip \
       freetype \
       libpng-dev \
-      libjpeg-turbo \
       libjpeg-turbo-dev \
     && docker-php-ext-configure gd \
-    && docker-php-ext-install zip gd
+	&& docker-php-ext-install -j$(getconf _NPROCESSORS_ONLN) gd \
+    && docker-php-ext-install zip
 
 # silently install 'docker-php-ext-install' extensions
 RUN set -x
