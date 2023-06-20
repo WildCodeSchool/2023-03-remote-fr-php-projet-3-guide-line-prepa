@@ -66,7 +66,7 @@ class SoundFixtures extends Fixture implements DependentFixtureInterface
             'picture' => 'dogs.jpeg',
             'file' => '7yWdsy6UHRTun4hkJZJYNq', 'instrument' => 8, 'player' => 'spotify'],
         ['title' => 'Little Wing', 'author' => 'Jimi Hendrix',
-            'picture' => 'little-wing.jpeg',
+            'picture' => 'little-wing.png',
             'file' => '1Eolhana7nKHYpcYpdVcT5', 'instrument' => 0, 'player' => 'spotify'],
     ];
 
