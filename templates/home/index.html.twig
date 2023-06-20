@@ -40,8 +40,13 @@
                 {% for sound in sounds %}
                     <div class="col-lg-3 col-6">
                         <div class="card h-100">
-                            <img src="{{ sound_dir }}/{{ sound.picture }}" class="card-img-top shadow"
-                                 alt="Couverture de l'album de {{ sound.artist.name }} - titre {{ sound.title }}">
+                            <picture>
+                                <source srcset="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover_mobile') }}" media="(max-width: 600px)" />
+                                <source srcset="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover') }}" media="(min-width: 600px)" />
+                                <img src="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover') }}" class="card-img-top shadow"
+                                     alt="Couverture de l'album de {{ sound.artist.name }} - titre {{ sound.title }}">
+                            </picture>
+
                             <div class="card-body">
                                 <h2 class="card-title fs-5 mb-0">{{ sound.artist.name }}</h2>
                                 <p>{{ sound.title }}</p>

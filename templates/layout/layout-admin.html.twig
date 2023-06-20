@@ -12,12 +12,18 @@
                     'path': 'app_admin_instrument_index',
                     'controller': 'App\\Controller\\Admin\\AdminInstrumentController'
                 },
+                {'title': 'Sound',
+                    'path': 'app_admin_sound_index',
+                    'controller': 'App\\Controller\\Admin\\AdminSoundController'
+                },
             ] %}
+
             {% set _controller = app.request.attributes.get("_controller")|split('::') %}
             {% for link in links %}
                 <li class="nav-item">
                     <a href="{{ path(link.path) }}" class="nav-link
-{{ link.controller == _controller[0] ? 'active'  }}">
+                        {{ link.controller == _controller[0] ? 'active'  }}"
+                        {{ link.controller == _controller[0] ? 'aria-current="page"'  }}>
                         {{ link.title }}
                     </a>
                 </li>

@@ -1,0 +1,39 @@
+{% extends 'layout/layout-admin.html.twig' %}
+
+{% block title %}Sound index{% endblock %}
+
+{% block content %}
+    <h1>Sound index</h1>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Picture</th>
+                <th>File</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sound in sounds %}
+            <tr>
+                <td>{{ sound.id }}</td>
+                <td>{{ sound.title }}</td>
+                <td>{{ sound.picture }}</td>
+                <td>{{ sound.file }}</td>
+                <td>
+                    <a href="{{ path('app_admin_sound_show', {'id': sound.id}) }}">show</a>
+                    <a href="{{ path('app_admin_sound_edit', {'id': sound.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_sound_new') }}">Create new</a>
+{% endblock %}

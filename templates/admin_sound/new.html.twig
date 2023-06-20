@@ -1,0 +1,11 @@
+{% extends 'layout/layout-admin.html.twig' %}
+
+{% block title %}New Sound{% endblock %}
+
+{% block content %}
+    <h1>Create new Sound</h1>
+
+    {{ include('admin_sound/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_sound_index') }}">back to list</a>
+{% endblock %}

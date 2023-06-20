@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\SoundRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: SoundRepository::class)]
+#[Vich\Uploadable]
 class Sound
 {
     #[ORM\Id]
@@ -15,6 +19,9 @@ class Sound
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
+
+    #[Vich\UploadableField(mapping: 'sounds', fileNameProperty: 'picture')]
+    private ?File $imageFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
@@ -30,6 +37,30 @@ class Sound
 
     #[ORM\ManyToOne(inversedBy: 'sounds')]
     private ?Player $player = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     */
+    public function setImageFile(?File $imageFile): void
+    {
+        $this->imageFile = $imageFile;
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new DateTimeImmutable();
+        }
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +135,18 @@ class Sound
     public function setPlayer(?Player $player): self
     {
         $this->player = $player;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

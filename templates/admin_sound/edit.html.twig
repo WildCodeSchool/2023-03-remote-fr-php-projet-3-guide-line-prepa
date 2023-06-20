@@ -1,0 +1,13 @@
+{% extends 'layout/layout-admin.html.twig' %}
+
+{% block title %}Edit Sound{% endblock %}
+
+{% block content %}
+    <h1>Edit Sound</h1>
+
+    {{ include('admin_sound/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_admin_sound_index') }}">back to list</a>
+
+    {{ include('admin_sound/_delete_form.html.twig') }}
+{% endblock %}
