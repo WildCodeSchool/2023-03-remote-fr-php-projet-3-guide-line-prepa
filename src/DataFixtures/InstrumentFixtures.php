@@ -15,8 +15,8 @@ class InstrumentFixtures extends Fixture implements DependentFixtureInterface
     public const INSTRUMENTS = [
         0 => ['name' => 'Stratocaster 1958', 'company' => 'Fender',
             'picture' => 'stratocaster-gilmour-black.png', 'category' => 0],
-        1 => ['name' => 'Grumphy the rocker', 'company' => 'Fender',
-            'picture' => 'grumphy.jpg', 'category' => 0],
+        1 => ['name' => 'Stratocaster Ultra', 'company' => 'Fender',
+            'picture' => 'stratocaster-gilmour-white.png', 'category' => 0],
         2 => ['name' => 'Les Paul 1975', 'company' => 'Gibson',
             'picture' => 'gibson-les-paul.png', 'category' => 0],
         3 => ['name' => 'Télécaster 1969', 'company' => 'Fender',

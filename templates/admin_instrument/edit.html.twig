@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/layout-admin.html.twig' %}
 
 {% block title %}Edit Instrument{% endblock %}
 
-{% block body %}
-    <h1>Edit Instrument</h1>
+{% block content %}
+    <h1>Edit Instrument - {{ instrument.name }}</h1>
 
     {{ include('admin_instrument/_form.html.twig', {'button_label': 'Update'}) }}
 
