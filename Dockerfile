@@ -34,6 +34,7 @@ RUN apk add --no-cache \
       libzip-dev \
       zip \
       libpng-dev \
+      jpeg-dev \
       libjpeg-turbo-dev \
     && docker-php-ext-install zip gd
 
