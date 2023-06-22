@@ -41,7 +41,7 @@ class AdminInstrumentController extends AbstractController
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1), /*page number*/
-            15 /*limit per page*/
+            10 /*limit per page*/
         );
         return $this->render('admin_instrument/index.html.twig', [
             'instruments' => $pagination,
@@ -84,11 +84,11 @@ class AdminInstrumentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $instrumentRepository->save($instrument, true);
-
+            $this->addFlash('success', 'Mise à jour effectuée avec succès.');
             return $this->redirectToRoute('app_admin_instrument_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_instrument/edit.html.twig', [
+        return $this->render('admin_instrument/edit.html.twig', [
             'instrument' => $instrument,
             'form' => $form,
         ]);

@@ -22,27 +22,33 @@
         <div class="d-flex flex-column align-items-center justify-content-center">
             {{ knp_pagination_render(instruments) }}
         </div>
-
     </div>
 
     <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
             <th>Picture</th>
-            <th>actions</th>
+            <th>Name</th>
+            <th>Marque</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         {% for instrument in instruments %}
-            <tr>
+            <tr class="position-relative">
                 <td>{{ instrument.id }}</td>
-                <td>{{ instrument.name }}</td>
-                <td>{{ instrument.picture }}</td>
                 <td>
-                    <a href="{{ path('app_admin_instrument_show', {'id': instrument.id}) }}">show</a>
-                    <a href="{{ path('app_admin_instrument_edit', {'id': instrument.id}) }}">edit</a>
+                    <img class="img-fluid"
+                         src="{{ (instrument_dir ~ '/' ~ instrument.picture)|imagine_filter('instrument_swiper_mini') }}" alt="">
+                </td>
+                <td>{{ instrument.name }}</td>
+                <td>
+                    {{ instrument.company.name }}
+                </td>
+                <td>
+                    <a class="stretched-link"
+                       href="{{ path('app_admin_instrument_edit', {'id': instrument.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -57,5 +63,4 @@
     </div>
 
     <a href="{{ path('app_admin_instrument_new') }}">Create new</a>
-    </div>
 {% endblock %}

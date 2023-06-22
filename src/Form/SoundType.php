@@ -19,7 +19,9 @@ class SoundType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('imageFile', VichFileType::class)
+            ->add('imageFile', VichFileType::class, [
+                'required' => false
+            ])
             ->add('file')
             ->add('instrument', EntityType::class, [
                 'class' =>  Instrument::class,

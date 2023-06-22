@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Sound;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,22 @@ class SoundRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function queryFindAll(): Query
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.title', 'ASC')
+            ->getQuery();
+    }
+
+    public function findLikeName(string $search): Query
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.title LIKE :search')
+            ->setParameter('search', '%' . $search . '%')
+            ->orderBy('s.title', 'ASC')
+            ->getQuery();
     }
 
 //    /**

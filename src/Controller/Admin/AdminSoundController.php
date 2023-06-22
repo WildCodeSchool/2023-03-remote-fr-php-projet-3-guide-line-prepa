@@ -5,7 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\Sound;
 use App\Form\SoundType;
 use App\Repository\SoundRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,10 +16,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminSoundController extends AbstractController
 {
     #[Route('/', name: 'app_admin_sound_index', methods: ['GET'])]
-    public function index(SoundRepository $soundRepository): Response
-    {
+    public function index(
+        SoundRepository $soundRepository,
+        Request $request,
+        PaginatorInterface $paginator
+    ): Response {
+
+        $form = $this->createFormBuilder(null, [
+            'method' => 'get',
+            'csrf_protection' => false
+        ])
+            ->add('search', SearchType::class, [
+                'attr' => ['autofocus' => true]
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->get('search')->getData();
+            $query = $soundRepository->findLikeName($search);
+        } else {
+            $query = $soundRepository->queryFindAll();
+        }
+
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1), /*page number*/
+            15 /*limit per page*/
+        );
         return $this->render('admin_sound/index.html.twig', [
-            'sounds' => $soundRepository->findBy([], orderBy: ['title' => 'ASC']),
+            'sounds' => $pagination,
+            'form' => $form
         ]);
     }
 
@@ -34,7 +63,7 @@ class AdminSoundController extends AbstractController
             return $this->redirectToRoute('app_admin_sound_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_sound/new.html.twig', [
+        return $this->render('admin_sound/new.html.twig', [
             'sound' => $sound,
             'form' => $form,
         ]);
@@ -56,11 +85,11 @@ class AdminSoundController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $soundRepository->save($sound, true);
-
+            $this->addFlash('success', 'Mise à jour effectuée avec succès.');
             return $this->redirectToRoute('app_admin_sound_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_sound/edit.html.twig', [
+        return $this->render('admin_sound/edit.html.twig', [
             'sound' => $sound,
             'form' => $form,
         ]);

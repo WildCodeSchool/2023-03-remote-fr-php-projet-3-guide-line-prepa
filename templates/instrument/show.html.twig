@@ -18,7 +18,7 @@
                     {% for sound in instrument.sounds %}
                         <button class="list-group-item list-group-item-action d-flex align-items-center
                             {{ app.request.get('listen') == sound.title ? 'active' }}">
-                            <img class="w-25 me-2" src="{{ sound_dir }}/{{ sound.picture }}" alt="{{ sound.title }}">
+                            <img class="w-25 me-2" src="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover_mini') }}" alt="{{ sound.title }}">
                             <span>
                                 {% if app.request.get('listen') == sound.title %}
                                     <i class="fa-regular fa-circle-play"></i>

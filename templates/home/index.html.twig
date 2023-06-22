@@ -10,7 +10,7 @@
                     <div class="swiper-wrapper">
                         {% for instrument in instruments %}
                             <figure class="swiper-slide p-2">
-                                <img src="{{ instrument_dir }}/{{ instrument.picture }}" alt="">
+                                <img src="{{ (instrument_dir ~ '/' ~ instrument.picture)|imagine_filter('instrument_swiper_thumb') }}" alt="">
                                 <figcaption class="d-flex flex-column p-2 w-50">
                                     <h3 class="fs-5">{{ instrument.name }}</h3>
                                     <p>{{ instrument.summary }}</p>
@@ -40,13 +40,8 @@
                 {% for sound in sounds %}
                     <div class="col-lg-3 col-6">
                         <div class="card h-100">
-                            <picture>
-                                <source srcset="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover_mobile') }}" media="(max-width: 600px)" />
-                                <source srcset="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover') }}" media="(min-width: 600px)" />
-                                <img src="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover') }}" class="card-img-top shadow"
-                                     alt="Couverture de l'album de {{ sound.artist.name }} - titre {{ sound.title }}">
-                            </picture>
-
+                            <img src="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover') }}" class="card-img-top shadow"
+                                 alt="Couverture de l'album de {{ sound.artist.name }} - titre {{ sound.title }}">
                             <div class="card-body">
                                 <h2 class="card-title fs-5 mb-0">{{ sound.artist.name }}</h2>
                                 <p>{{ sound.title }}</p>
