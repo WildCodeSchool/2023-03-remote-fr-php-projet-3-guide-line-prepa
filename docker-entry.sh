@@ -23,7 +23,6 @@ chmod -R 777 /var/www/public
 # assets:install public
 # ckeditor:install and so on
 composer run post-install-cmd
-composer dump-env prod
 
 ## server config
 php-fpm -D &

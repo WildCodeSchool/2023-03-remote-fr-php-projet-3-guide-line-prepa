@@ -6,6 +6,7 @@ services:
       - .env
     environment:
       # @todo add APP_ENV default dev
+      APP_ENV: ${APP_ENV:-test}
       DATABASE_URL: mysql://${USER_NAME}:${USER_PASSWORD}@${DATABASE_SUBDOMAIN_NAME}-db:3306/${DB_NAME}?serverVersion=8&charset=utf8mb4
       MAILER_DSN: smtp://${PROJECT_NAME}-mailhog:1025
     build: .
