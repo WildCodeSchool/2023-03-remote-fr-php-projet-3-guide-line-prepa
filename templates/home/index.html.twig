@@ -14,7 +14,9 @@
                                 <figcaption class="d-flex flex-column p-2 w-50">
                                     <h3 class="fs-5">{{ instrument.name }}</h3>
                                     <p>{{ instrument.summary }}</p>
-                                    <a class="btn btn-sm btn-primary mt-auto" href="{{ path('app_instrument_show', {slug: instrument.slug}) }}">Entendre</a>
+                                    <a class="btn btn-sm btn-primary mt-auto"
+                                       title="Accéder et écouter {{ instrument.name }}"
+                                       href="{{ path('app_instrument_show', {slug: instrument.slug}) }}">Entendre</a>
                                 </figcaption>
                             </figure>
                         {% endfor %}

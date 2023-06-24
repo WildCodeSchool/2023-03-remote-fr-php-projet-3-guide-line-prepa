@@ -1,0 +1,15 @@
+<div {{ attributes }}
+    id="player" class="position-fixed bottom-0 start-0 ms-2">
+    {% if this.sound %}
+        {% if this.sound.player.name == 'spotify' %}
+            <iframe style="border-radius:12px"
+                    src="https://open.spotify.com/embed/track/{{ this.sound.file }}?utm_source=generator&theme=0"
+                    width="100%" height="152" frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        {% endif %}
+        {% if this.sound.player.name == 'youtube' %}
+            <div class="text-bg-warning">youtube</div>
+        {% endif %}
+    {% endif %}
+
+</div>

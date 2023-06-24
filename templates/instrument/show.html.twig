@@ -17,7 +17,9 @@
                 <div class="list-group position-sticky-top" role="list">
                     {% for sound in instrument.sounds %}
                         <button class="list-group-item list-group-item-action d-flex align-items-center
-                            {{ app.request.get('listen') == sound.title ? 'active' }}">
+                            {{ app.request.get('listen') == sound.title ? 'active' }}"
+                                data-sound-id="{{ sound.id }}"
+                            {{ stimulus_action('player', 'play') }}>
                             <img class="w-25 me-2" src="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover_mini') }}" alt="{{ sound.title }}">
                             <span>
                                 {% if app.request.get('listen') == sound.title %}
