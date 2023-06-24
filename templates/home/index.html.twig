@@ -38,6 +38,9 @@
 
     <section class="mt-5">
         <div class="container">
+            <div class="text-end mb-2">
+                <a href="{{ path('app_sound_index') }}">Tous les titres</a>
+            </div>
             <div class="row g-5">
                 {% for sound in sounds %}
                     <div class="col-lg-3 col-6">
@@ -49,6 +52,8 @@
                                 <p>{{ sound.title }}</p>
                                 <a class="stretched-link"
                                    aria-label="Lien vers la fiche de l'instrument"
+                                   data-sound-id="{{ sound.id }}"
+                                    {{ stimulus_action('player', 'play') }}
                                    href="{{ path('app_instrument_show', {
                                        slug: sound.instrument.slug,
                                        listen: sound.title
