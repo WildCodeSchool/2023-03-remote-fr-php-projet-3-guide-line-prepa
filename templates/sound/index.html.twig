@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les artistes{% endblock %}
+
+{% block body %}
+    <section class="mt-5">
+        <div class="container">
+            <h1 class="text-center my-5">Tous les titres</h1>
+            <div class="row g-5 mb-3">
+                {% for sound in sounds %}
+                    <div class="col-lg-3 col-6">
+                        <div class="card h-100">
+                            <img src="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover') }}" class="card-img-top shadow"
+                                 alt="Couverture de l'album de {{ sound.artist.name }} - titre {{ sound.title }}">
+                            <div class="card-body">
+
+                                <div class="d-flex flex-column-reverse flex-sm-row justify-content-between ">
+                                    <div>
+                                        <h2 class="card-title fs-5 mb-0">{{ sound.artist.name }}</h2>
+                                        <p class="mb-0">
+                                            {{ sound.title }}
+                                        </p>
+                                    </div>
+                                    {% if app.user %}
+                                        {{ component('bookmark', {
+                                            sound: sound
+                                        }) }}
+                                    {% endif %}
+                                </div>
+
+
+                                <a class="stretched-link"
+                                   data-sound-id="{{ sound.id }}"
+                                   aria-label="Lien vers la fiche de l'instrument"
+                                   href="{{ path('app_instrument_show', {
+                                       slug: sound.instrument.slug,
+                                       listen: sound.title
+                                   }) }}"></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex flex-column align-items-center justify-content-center mb-3">
+                {{ knp_pagination_render(sounds) }}
+            </div>
+        </div>
+    </section>
+{% endblock %}
