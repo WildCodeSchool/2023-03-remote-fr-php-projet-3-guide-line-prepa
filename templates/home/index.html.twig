@@ -6,7 +6,7 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-lg-6">
-                <div class="swiper mb-5 mb-lg-0">
+                <div class="swiper mb-5 mb-lg-0" {{ stimulus_controller('swiper') }}>
                     <div class="swiper-wrapper">
                         {% for instrument in instruments %}
                             <figure class="swiper-slide p-2">
@@ -23,7 +23,7 @@
             </div>
             <div class="col-lg-5 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
                 <h1>Welcome on Guitar Shop!</h1>
-                <p>
+                                <p>
                     Guitar shop est un catalogue d’instruments qui va vous étonner !
                     <br>
                     Vous êtes passioné·e de musique et d’instruments ?
@@ -59,22 +59,4 @@
         </div>
     </section>
 
-{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('swiper') }}
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('swiper') }}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const swiper = new Swiper(".swiper", {
-                effect: "cards",
-                grabCursor: true,
-            });
-        })
-    </script>
 {% endblock %}

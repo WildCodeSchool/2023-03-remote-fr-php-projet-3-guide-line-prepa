@@ -1,0 +1,13 @@
+
+<li class="nav-item dropdown" {{ attributes }}>
+    <a class="nav-link dropdown-toggle"
+       href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        All companies
+    </a>
+    <ul class="dropdown-menu">
+        {% for company in this.companies %}
+            <li><a class="dropdown-item" href="#">{{ company.name }}</a></li>
+        {% endfor %}
+    </ul>
+</li>
+
