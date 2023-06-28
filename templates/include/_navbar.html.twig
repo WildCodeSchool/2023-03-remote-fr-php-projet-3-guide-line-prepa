@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-sm">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('app_home') }}">Guitar shop</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -10,20 +10,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-
+                <a class="navbar-brand w-25" href="{{ path('app_home') }}">Guitar shop</a>
+                <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_sound_index') }}">All sounds</a>
+                        <a class="nav-link" href="{{ path('app_sound_index') }}">
+                            Tous les titres
+                        </a>
                     </li>
 
-                    {{ component('navigation') }}
+                    {{ component('companies_navigation') }}
+                </ul>
+                <ul class="navbar-nav justify-content-end w-25 pe-3">
 
                     {{ component('search') }}
 
-
                     {% if app.user %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ app.user.nickname }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">

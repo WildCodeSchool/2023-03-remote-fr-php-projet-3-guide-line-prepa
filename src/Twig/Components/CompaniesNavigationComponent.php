@@ -5,8 +5,8 @@ namespace App\Twig\Components;
 use App\Repository\CompanyRepository;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent('navigation')]
-final class NavigationComponent
+#[AsTwigComponent('companies_navigation')]
+final class CompaniesNavigationComponent
 {
     public function __construct(private readonly CompanyRepository $companyRepository)
     {

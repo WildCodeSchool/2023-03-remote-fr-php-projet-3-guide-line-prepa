@@ -1,15 +1,29 @@
-<div{{ attributes }} class="position-relative me-2">
+<li{{ attributes.defaults(stimulus_controller('search')) }} class="position-relative me-2">
 
-    <input class="form-control me-2" type="search" data-model="search"
-           placeholder="Search" aria-label="Search">
+    <div class="d-none" {{ stimulus_target('search','searchInput') }}>
+        <input class="form-control me-2"
+               aria-hidden="true"
+               type="search"
+               data-model="search"
+               data-action="keydown@document->search#keyDown keydown->search#keyDown mouseup@window->search#hide"
+               placeholder="Search" aria-label="Search an instrument">
 
-    <div class="list-group position-absolute">
-        {% for instrument in this.searchInstruments %}
-            <a href="{{ path('app_instrument_show', {'slug': instrument.slug}) }}"
-               class="list-group-item list-group-item-action">
-                {{ instrument.name }}
-            </a>
-        {% endfor %}
+        <div class="list-group position-absolute">
+            {% for instrument in this.searchInstruments %}
+                <a href="{{ path('app_instrument_show', {'slug': instrument.slug}) }}"
+                   class="list-group-item list-group-item-action">
+                    {{ instrument.name }}
+                </a>
+            {% endfor %}
+        </div>
     </div>
 
-</div>
+    <button class="nav-link"
+            aria-hidden="false"
+            aria-label="jump to the search input field"
+            data-action="search#show"
+            {{ stimulus_target('search', 'showButton')}}>
+        <i class="fas fa-search"></i>
+    </button>
+
+</li>
