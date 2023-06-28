@@ -15,5 +15,8 @@ export default class extends Controller {
     connect()
     {
         new bootstrap.Toast(this.element).show();
+        this.element.addEventListener('hidden.bs.toast', () => {
+            this.element.remove();
+        })
     }
 }

@@ -19,31 +19,11 @@
     </head>
     <body class="min-vh-100 d-flex flex-column">
         {% include 'include/_navbar.html.twig' %}
-
-        <div aria-live="polite" aria-atomic="true" class="position-relative">
-            <div class="toast-container position-fixed top-0 end-0 p-3">
-                {% for label, messages in app.flashes %}
-                    {% for message in messages %}
-                        <div class="toast text-bg-{{ label }} border-0"
-                             {{ stimulus_controller('toast') }}
-                             role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                                <button type="button"
-                                        class="btn-close ms-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body">
-                                {{ message }}
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        </div>
+        {{ component('toaster') }}
 
         <main class="mb-5">
             {% block body %}{% endblock %}
         </main>
-
         {% include 'include/_footer.html.twig' %}
     </body>
 </html>

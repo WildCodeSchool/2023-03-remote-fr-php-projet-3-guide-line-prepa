@@ -36,7 +36,9 @@ final class BookmarkComponent extends AbstractController
     {
         if ($this->user->getSoundsBookmarked()->contains($this->sound)) {
             $this->user->removeSoundsBookmarked($this->sound);
+            $this->addFlash('warning', $this->sound->getTitle() . ' a bien été retiré de vos favoris.');
         } else {
+            $this->addFlash('success', $this->sound->getTitle() . ' a bien été ajouté à vos favoris.');
             $this->user->addSoundsBookmarked($this->sound);
         }
         $this->userRepository->save($this->user, true);
