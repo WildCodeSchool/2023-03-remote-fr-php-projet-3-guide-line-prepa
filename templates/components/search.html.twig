@@ -1,0 +1,15 @@
+<div{{ attributes }} class="position-relative me-2">
+
+    <input class="form-control me-2" type="search" data-model="search"
+           placeholder="Search" aria-label="Search">
+
+    <div class="list-group position-absolute">
+        {% for instrument in this.searchInstruments %}
+            <a href="{{ path('app_instrument_show', {'slug': instrument.slug}) }}"
+               class="list-group-item list-group-item-action">
+                {{ instrument.name }}
+            </a>
+        {% endfor %}
+    </div>
+
+</div>

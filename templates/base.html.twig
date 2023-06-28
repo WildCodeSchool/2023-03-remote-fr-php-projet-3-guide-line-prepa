@@ -20,13 +20,7 @@
     <body {{ stimulus_controller('player') }}>
         <turbo-frame class="min-vh-100 d-flex flex-column" id="body" data-turbo-action="advance">
             {% include 'include/_navbar.html.twig' %}
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endfor %}
+            {{ component('toaster') }}
             <main class="mb-5">
                 {% block body %}{% endblock %}
             </main>

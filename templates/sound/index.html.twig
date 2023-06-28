@@ -13,8 +13,22 @@
                             <img src="{{ (sound_dir ~ '/' ~ sound.picture)|imagine_filter('sound_cover') }}" class="card-img-top shadow"
                                  alt="Couverture de l'album de {{ sound.artist.name }} - titre {{ sound.title }}">
                             <div class="card-body">
-                                <h2 class="card-title fs-5 mb-0">{{ sound.artist.name }}</h2>
-                                <p>{{ sound.title }}</p>
+
+                                <div class="d-flex flex-column-reverse flex-sm-row justify-content-between ">
+                                    <div>
+                                        <h2 class="card-title fs-5 mb-0">{{ sound.artist.name }}</h2>
+                                        <p class="mb-0">
+                                            {{ sound.title }}
+                                        </p>
+                                    </div>
+                                    {% if app.user %}
+                                        {{ component('bookmark', {
+                                            sound: sound
+                                        }) }}
+                                    {% endif %}
+                                </div>
+
+
                                 <a class="stretched-link"
                                    data-sound-id="{{ sound.id }}"
                                     {{ stimulus_action('player', 'play') }}
