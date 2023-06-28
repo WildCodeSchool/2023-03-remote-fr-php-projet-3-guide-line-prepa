@@ -18,15 +18,15 @@
         <script src="https://kit.fontawesome.com/935a547f0f.js" crossorigin="anonymous"></script>
     </head>
     <body {{ stimulus_controller('player') }}>
-        <turbo-frame class="min-vh-100 d-flex flex-column" id="body" data-turbo-action="advance">
-            {% include 'include/_navbar.html.twig' %}
-            {{ component('toaster') }}
-            <main class="mb-5">
-                {% block body %}{% endblock %}
-            </main>
+            <turbo-frame class="min-vh-100 d-flex flex-column" id="body" data-turbo-action="advance">
+                {% include 'include/_navbar.html.twig' %}
+                {{ component('toaster') }}
+                <main class="mb-5">
+                    {% block body %}{% endblock %}
+                </main>
 
-            {% include 'include/_footer.html.twig' %}
-        </turbo-frame>
+                {% include 'include/_footer.html.twig' %}
+            </turbo-frame>
 
         {{ component('player') }}
     </body>
