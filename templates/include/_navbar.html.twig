@@ -1,26 +1,33 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-sm">
     <div class="container-fluid">
-
+        <a class="navbar-brand" href="{{ path('app_home') }}">Guitar shop</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+            <div class="offcanvas-header justify-content-end">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <a class="navbar-brand w-25" href="{{ path('app_home') }}">Guitar shop</a>
-                <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+
+                <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 gap-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_sound_index') }}">
-                            Tous les titres
+                        <a class="nav-link {{ activeClass(['SoundController', 'index']) }}"
+                           href="{{ path('app_sound_index') }}">
+                            Titres
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ activeClass(['InstrumentController', 'index']) }}"
+                           href="{{ path('app_instrument_index') }}">
+                            Catalogue
                         </a>
                     </li>
 
                     {{ component('companies_navigation') }}
+
                 </ul>
-                <ul class="navbar-nav justify-content-end w-25 pe-3">
+                <ul class="navbar-nav navbar-nav-utils justify-content-end pe-3">
 
                     {{ component('search') }}
 
@@ -29,7 +36,7 @@
                         <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ app.user.nickname }}
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end border-0">
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li><a class="dropdown-item" href="{{ path('app_admin') }}">Admin</a></li>
                                 <li>

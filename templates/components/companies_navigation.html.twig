@@ -1,11 +1,15 @@
 <li class="nav-item dropdown" {{ attributes }}>
-    <a class="nav-link dropdown-toggle"
+    <a class="nav-link dropdown-toggle {{ activeClass(['CompanyController', 'show']) }}"
        href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         Marques
     </a>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu dropdown-menu-end border-0">
         {% for company in this.companies %}
-            <li><a class="dropdown-item" href="#">{{ company.name }}</a></li>
+            <li>
+                {% set path = path('app_company_show', {'id': company.id}) %}
+                <a class="dropdown-item {{ activeClass([], path) }}"
+                   href="{{ path }}">{{ company.name }}</a>
+            </li>
         {% endfor %}
     </ul>
 </li>

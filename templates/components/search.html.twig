@@ -1,17 +1,17 @@
-<li{{ attributes.defaults(stimulus_controller('search')) }} class="position-relative me-2">
+<li{{ attributes.defaults(stimulus_controller('search')) }} class="position-relative d-flex justify-content-end me-2 flex-grow-1">
 
-    <div class="d-none" {{ stimulus_target('search','searchInput') }}>
-        <input class="form-control me-2"
+    <div class="d-none w-100" {{ stimulus_target('search','searchInput') }}>
+        <input class="form-control w-100 me-2 mb-3 mb-lg-0"
                aria-hidden="true"
                type="search"
                data-model="search"
                data-action="keydown@document->search#keyDown keydown->search#keyDown mouseup@window->search#hide"
                placeholder="Search" aria-label="Search an instrument">
 
-        <div class="list-group position-absolute">
+        <div class="list-group position-absolute w-100 shadow">
             {% for instrument in this.searchInstruments %}
                 <a href="{{ path('app_instrument_show', {'slug': instrument.slug}) }}"
-                   class="list-group-item list-group-item-action">
+                   class="list-group-item list-group-item-action border-0 border-bottom">
                     {{ instrument.name }}
                 </a>
             {% endfor %}
