@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top shadow-sm">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{{ path('app_home') }}">Guitar shop</a>
+        <a class="navbar-brand" href="{{ path('app_home') }}">Peter & the wolf</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,20 +12,18 @@
 
                 <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 gap-3">
                     <li class="nav-item">
-                        <a class="nav-link {{ activeClass(['SoundController', 'index']) }}"
-                           href="{{ path('app_sound_index') }}">
-                            Titres
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {{ activeClass(['InstrumentController', 'index']) }}"
                            href="{{ path('app_instrument_index') }}">
                             Catalogue
                         </a>
                     </li>
-
                     {{ component('companies_navigation') }}
-
+                    <li class="nav-item">
+                        <a class="nav-link {{ activeClass(['SoundController', 'index']) }}"
+                           href="{{ path('app_sound_index') }}">
+                            Titres
+                        </a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav navbar-nav-utils justify-content-end pe-3">
 

@@ -1,0 +1,18 @@
+<button
+    {{ attributes }}
+    class="list-group-item list-group-item-action {{ app.session.get('soundPlaying') == sound.id ? 'active' }} list-group-player"
+    data-sound-id="{{ sound.id }}"
+    {{ stimulus_action('player', 'play') }}>
+    <span class="list-group-player__index">
+        {{ index }}
+    </span>
+    <img class="img-fluid shadow-sm"
+         src="{{ vich_uploader_asset(sound, 'imageFile')|imagine_filter('sound_cover_mini') }}" alt="">
+    {% if app.session.get('soundPlaying') == sound.id %}
+        <i class="fa-regular fa-circle-play"></i>
+    {% endif %}
+    <span>
+        <span class="list-group-player__artist">{{ sound.artist.name }}</span>
+        <span class="list-group-player__title">{{ sound.title }}</span>
+    </span>
+</button>

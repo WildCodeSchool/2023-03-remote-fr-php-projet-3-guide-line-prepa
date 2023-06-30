@@ -17,8 +17,18 @@ export default class extends Controller {
 
     play(event)
     {
+        // [...document.querySelectorAll('.list-group-player')].map(el => el.classList.remove('active'));
         const component = document.getElementById('player').__component;
-        component.soundId = event.currentTarget.dataset.soundId;
-        component.render();
+        component.action('playSound', { soundId: event.currentTarget.dataset.soundId });
+
+        const lastSoundPlayerComponent = document.querySelector('.list-group-player.active');
+        if (lastSoundPlayerComponent) {
+            lastSoundPlayerComponent.__component.render();
+        }
+
+        const soundComponent = event.currentTarget.__component;
+        if (soundComponent) {
+            soundComponent.render();
+        }
     }
 }

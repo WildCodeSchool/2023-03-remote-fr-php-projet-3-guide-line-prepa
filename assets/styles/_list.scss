@@ -1,0 +1,26 @@
+.list-group-player {
+    --bs-list-group-item-padding-y: .25rem;
+    --bs-list-group-action-hover-color: #{color-contrast($primary)};
+    --bs-list-group-action-hover-bg: #{$primary};
+    --bs-list-group-action-active-color: var(--bs-list-group-action-hover-color);
+    --bs-list-group-action-active-bg: var(--bs-list-group-action-hover-bg);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: $gray-100;
+    border-width: 0;
+    border-bottom: 2px solid $gray-400;
+    transition: background-color $transition-speed, color $transition-speed;
+    .list-group-player__index {
+        width: .5rem;
+    }
+    .list-group-player__artist {
+        display: block;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    .list-group-player__title {
+        font-size: .875rem;
+        margin-bottom: 0;
+    }
+}

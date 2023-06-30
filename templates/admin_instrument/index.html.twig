@@ -23,15 +23,24 @@
             {{ knp_pagination_render(instruments) }}
         </div>
     </div>
-
+    <a class="btn btn-success mb-3" href="{{ path('app_admin_instrument_new') }}">Create new</a>
     <table class="table table-striped table-hover">
         <thead>
+
         <tr>
-            <th>Id</th>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Marque</th>
+            {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(instruments, 'Id', 'i.id') }}</th>
+            <th{% if instruments.isSorted('i.picture') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(instruments, 'Picture', 'i.picture') }}
+            </th>
+            <th{% if instruments.isSorted('i.name') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(instruments, 'Name', 'i.name') }}
+            </th>
+            <th>
+                Marque
+            </th>
             <th></th>
+
         </tr>
         </thead>
         <tbody>
@@ -62,5 +71,5 @@
         {{ knp_pagination_render(instruments) }}
     </div>
 
-    <a href="{{ path('app_admin_instrument_new') }}">Create new</a>
+
 {% endblock %}

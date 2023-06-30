@@ -1,0 +1,8 @@
+<div class="list-group shadow-sm rounded-0">
+    {% for sound in instrument.sounds %}
+        {{ component('sound', {
+            sound: sound,
+            index: loop.index
+        }) }}
+    {% endfor %}
+</div>
